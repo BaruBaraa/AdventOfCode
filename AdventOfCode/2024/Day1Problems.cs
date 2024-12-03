@@ -1,18 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace AdventOfCode.AdventOfCode2024
 {
-    internal class ProblemOne
+    internal class Day1Problems
     {
         private int[] _arr1;
         private int[] _arr2;
 
-        public ProblemOne(string path)
+        public Day1Problems(string path)
         {
             _arr1 = [];
             _arr2 = [];
