@@ -31,17 +31,52 @@ class MainTest
         // Console.WriteLine($"Day 3 - Problem 1: Total sum of valid multiplications: {totalSumOfValidMultiplactions}");
 
         // int totalSumOfValidMultiplactionsDoDonts = problemThree.CalculateSumValidMultiplicationsWithDoDonts();
-        // Console.WriteLine($"Day 3 - Problem 1: Total sum of valid multiplications with do & don't: {totalSumOfValidMultiplactionsDoDonts}");
+        // Console.WriteLine($"Day 3 - Problem 2: Total sum of valid multiplications with do & don't: {totalSumOfValidMultiplactionsDoDonts}");
         #endregion
 
         #region day4
-        Day4Problems problemFour = new("C:\\Source\\AdventOfCode\\AdventOfCode\\2024\\Day4Input.txt");
+        // Day4Problems problemFour = new("C:\\Source\\AdventOfCode\\AdventOfCode\\2024\\Day4Input.txt");
 
-        int totalSum = problemFour.CalculateNumberOfXmasWordsFound();
-        Console.WriteLine($"Day 3 - Problem 1: Total sum of valid multiplications: {totalSum}");
+        // int totalSum = problemFour.CalculateNumberOfXmasWordsFound();
+        // Console.WriteLine($"Day 4 - Problem 1: Total sum of valid multiplications: {totalSum}");
 
-        int totalSum2 = problemFour.CalculateNumberOfXmasWordsFoundTwo();
-        Console.WriteLine($"Day 3 - Problem 1: Total sum of valid multiplications with do & don't: {totalSum2}");
+        // int totalSum2 = problemFour.CalculateNumberOfXmasWordsFoundTwo();
+        // Console.WriteLine($"Day 4 - Problem 2: Total sum of valid multiplications with do & don't: {totalSum2}");
         #endregion
+
+        #region day5
+        Day5Problems problemFive = new("C:\\Source\\AdventOfCode\\AdventOfCode\\2024\\Day5Input.txt");
+
+        int day5results = problemFive.Calculate();
+        Console.WriteLine($"Day 5 - Problem 1: {day5results}");
+
+        int day5results2 = problemFive.CalculateFixedInvalidMids();
+        Console.WriteLine($"Day 5 - Problem 2: {day5results2}");
+        #endregion
+    }
+
+    private void RunDayOneProblems()
+    {
+
+    }
+
+    private void RunDayTwoProblems()
+    {
+        
+    }
+
+    private void RunDayThreeProblems()
+    {
+        
+    }
+
+    private void RunDayFourProblems()
+    {
+        
+    }
+
+    private void RunDayFiveProblems()
+    {
+        
     }
 }

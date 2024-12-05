@@ -15,7 +15,7 @@ namespace AdventOfCode.AdventOfCode2024
             string[] lines = File.ReadAllLines(path);
             _nums = new int[lines.Length][];
 
-            for (var i = 0; i < lines.Length; i += 1) {
+            for (int i = 0; i < lines.Length; i++) {
                 string[] line = lines[i].Split(" ");
                 _nums[i] = new int[line.Length];
 
