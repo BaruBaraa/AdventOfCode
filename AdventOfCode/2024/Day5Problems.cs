@@ -11,6 +11,7 @@ namespace AdventOfCode.AdventOfCode2024
         public Day5Problems(string path)
         {
             _input = [];
+            _nums = [];
             _graph = new();
             ReadNumInputsFromFile(path);
         }
@@ -20,6 +21,14 @@ namespace AdventOfCode.AdventOfCode2024
             _input = File.ReadAllLines(path);
 
             //Read and create graph
+            int currLine = CreateGraph();
+
+            //Create list of nums to check validity
+            CreateNums(currLine);
+        }
+
+        private int CreateGraph()
+        {
             int i;
             for (i = 0; i < _input.Length; i++) {
                 if(_input[i].Length > 0)
@@ -36,13 +45,14 @@ namespace AdventOfCode.AdventOfCode2024
                 else
                     break;
             }
+            return ++i;
+        }
 
-            i++;
-
-            //Create list of nums to check validity
-            _nums = new int[_input.Length - i][];
+        private void CreateNums(int currLine)
+        {
+            _nums = new int[_input.Length - currLine][];
             int x = 0;
-            for(i = i; i < _input.Length; i++)
+            for(int i = currLine; i < _input.Length; i++)
             {
                 string[] line = _input[i].Split(",");
                 _nums[x] = new int[line.Length];
@@ -80,7 +90,7 @@ namespace AdventOfCode.AdventOfCode2024
             return sumOfValidMids;
         }
 
-        public int CalculateFixedInvalidMids()
+        public int CalculateSumOfFixedInvalidMids()
         {
             int sumOfValidMids = 0;
             foreach(int[] nums in _nums)
