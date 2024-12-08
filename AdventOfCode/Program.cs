@@ -4,11 +4,14 @@ class MainTest
 {
     static public void Main(String[] args)
     {
-        RunDayOneProblems();
-        RunDayTwoProblems();
-        RunDayThreeProblems();
-        RunDayFourProblems();
-        RunDayFiveProblems();
+        //RunDayOneProblems();
+        //RunDayTwoProblems();
+        //RunDayThreeProblems();
+        //RunDayFourProblems();
+        //RunDayFiveProblems();
+        //RunDaySixProblems();
+        //RunDaySevenProblems();
+        RunDayEightProblems();
     }
 
     private static void RunDayOneProblems()
@@ -64,5 +67,46 @@ class MainTest
 
         int day5results2 = problemFive.CalculateSumOfFixedInvalidMids();
         Console.WriteLine($"Day 5 - Problem 2: Sum of fixed invalid mids: {day5results2}");
+    }
+
+    private static void RunDaySixProblems()
+    {
+        Day6Problems problemSix = new("C:\\Source\\AdventOfCode\\AdventOfCode\\2024\\Day6Input.txt");
+
+        int day6results = problemSix.CalculateGaurdDistinctPositions();
+        Console.WriteLine($"Day 6 - Problem 1: {day6results}");
+
+        int stackSize = Int32.MaxValue;
+        Thread th  = new Thread( ()=>
+        {
+            int day6results2 = problemSix.CalculateNumberAddedObstructionLoops();
+            Console.WriteLine($"Day 6 - Problem 2: {day6results2}");
+        },
+        stackSize);
+
+        th.Start();
+        th.Join();
+    }
+
+    private static void RunDaySevenProblems()
+    {
+        Day7Problems problemSeven = new("C:\\Source\\AdventOfCode\\AdventOfCode\\2024\\Day7Input.txt");
+
+        double day7Results = problemSeven.CalculateTotalValidCalibration();
+        Console.WriteLine($"Day 7 - Problem 1: {day7Results}");
+
+        double day7Results2 = problemSeven.CalculateTotalValidCalibrationOrOperator();
+        Console.WriteLine($"Day 7 - Problem 2: {day7Results2}");
+    }
+
+    private static void RunDayEightProblems()
+    {
+        Day8Problems problemEight = new("C:\\Source\\AdventOfCode\\AdventOfCode\\2024\\Day8Input.txt");
+
+        int day8results = problemEight.CalculateAllAntinodes();
+        Console.WriteLine($"Day 8 - Problem 1: {day8results}");
+
+        // int day8results2 = problemSix.CalculateNumberAddedObstructionLoops();
+        // Console.WriteLine($"Day 8 - Problem 2: {day8results2}");
     }
 }
