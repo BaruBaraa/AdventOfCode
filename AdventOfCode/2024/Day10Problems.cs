@@ -64,7 +64,16 @@ namespace AdventOfCode.AdventOfCode2024
         public int CalculateMemo()
         {
             int results = 0;
-            Dictionary<(int, int), int> memo = new();
+            int[][] memo = new int[_graph.Length][];
+            for(int row = 0; row < _graph.Length; row++)
+            {
+                memo[row] = new int[_graph[row].Length];
+                for(int col = 0; col < _graph[0].Length; col++)
+                {
+                    memo[row][col] = -1;
+                }
+            }
+
             for(int row = 0; row < _graph.Length; row++)
             {
                 for(int col = 0; col < _graph[0].Length; col++)
@@ -76,14 +85,14 @@ namespace AdventOfCode.AdventOfCode2024
             return results;
         }
 
-        private int DFSHelperMemo(int row, int col, int[][] _graph, int currHeight, HashSet<(int, int)> visited, Dictionary<(int, int), int> memo)
+        private int DFSHelperMemo(int row, int col, int[][] _graph, int currHeight, HashSet<(int, int)> visited, int[][] memo)
         {
             if(row >= _graph.Length || row < 0 || col >= _graph[0].Length || col < 0 || _graph[row][col] != currHeight)
                 return 0;
             
             
-            if(memo.ContainsKey((row, col)))
-                return memo[(row, col)];
+            if(memo[row][col] != -1)
+                return memo[row][col];
 
             if(_graph[row][col] == 9)
                 return 1;
@@ -95,7 +104,7 @@ namespace AdventOfCode.AdventOfCode2024
             count += DFSHelper(row - 1, col, _graph, currHeight + 1, visited);
             count += DFSHelper(row, col - 1, _graph, currHeight + 1, visited);
 
-            memo.Add((row, col), count);
+            memo[row][col] = count;
             return count;
         }
     }
