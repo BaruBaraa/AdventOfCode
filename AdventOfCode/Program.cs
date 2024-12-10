@@ -127,13 +127,13 @@ class MainTest
         var watch = System.Diagnostics.Stopwatch.StartNew();
         double day10results = problemTen.Calculate();
         watch.Stop();
-        Console.WriteLine($"Day 10 - Problem 1: {day10results}, elapsed time: {watch.ElapsedTicks}");
+        Console.WriteLine($"Day 10 - Problem 1: {day10results}, elapsed ticks: {watch.ElapsedTicks}");
 
         watch.Reset();
         watch.Start();
         double day10resultsMemo = problemTen.CalculateMemo();
         watch.Stop();
-        Console.WriteLine($"Day 10 - Problem 1: {day10resultsMemo}, elapsed time: {watch.ElapsedTicks}");
+        Console.WriteLine($"Day 10 - Problem 1: {day10resultsMemo}, elapsed ticks: {watch.ElapsedTicks}");
 
         // double day10results2 = problemTen.CalculateFinalChecksumTwo();
         // Console.WriteLine($"Day 10 - Problem 2: {day10results2}");

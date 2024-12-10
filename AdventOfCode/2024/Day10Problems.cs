@@ -69,9 +69,7 @@ namespace AdventOfCode.AdventOfCode2024
             {
                 memo[row] = new int[_graph[row].Length];
                 for(int col = 0; col < _graph[0].Length; col++)
-                {
                     memo[row][col] = -1;
-                }
             }
 
             for(int row = 0; row < _graph.Length; row++)
