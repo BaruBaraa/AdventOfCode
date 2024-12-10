@@ -11,7 +11,9 @@ class MainTest
         //RunDayFiveProblems();
         //RunDaySixProblems();
         //RunDaySevenProblems();
-        RunDayEightProblems();
+        //RunDayEightProblems();
+        // RunDayNineProblems();
+        RunDayTenProblems();
     }
 
     private static void RunDayOneProblems()
@@ -105,8 +107,27 @@ class MainTest
 
         int day8results = problemEight.CalculateAllAntinodes();
         Console.WriteLine($"Day 8 - Problem 1: {day8results}");
+    }
 
-        // int day8results2 = problemSix.CalculateNumberAddedObstructionLoops();
-        // Console.WriteLine($"Day 8 - Problem 2: {day8results2}");
+    private static void RunDayNineProblems()
+    {
+        Day9Problems problemNine = new("C:\\Source\\AdventOfCode\\AdventOfCode\\2024\\Day9Input.txt");
+
+        double day9results = problemNine.CalculateFinalChecksum();
+        Console.WriteLine($"Day 9 - Problem 1: {day9results}");
+
+        double day9results2 = problemNine.CalculateFinalChecksumTwo();
+        Console.WriteLine($"Day 9 - Problem 2: {day9results2}");
+    }
+
+    private static void RunDayTenProblems()
+    {
+        Day10Problems problemTen = new("C:\\Source\\AdventOfCode\\AdventOfCode\\2024\\Day10Input.txt");
+
+        double day10results = problemTen.Calculate();
+        Console.WriteLine($"Day 10 - Problem 1: {day10results}");
+
+        // double day10results2 = problemTen.CalculateFinalChecksumTwo();
+        // Console.WriteLine($"Day 10 - Problem 2: {day10results2}");
     }
 }
