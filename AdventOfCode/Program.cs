@@ -124,8 +124,16 @@ class MainTest
     {
         Day10Problems problemTen = new("C:\\Source\\AdventOfCode\\AdventOfCode\\2024\\Day10Input.txt");
 
+        var watch = System.Diagnostics.Stopwatch.StartNew();
         double day10results = problemTen.Calculate();
-        Console.WriteLine($"Day 10 - Problem 1: {day10results}");
+        watch.Stop();
+        Console.WriteLine($"Day 10 - Problem 1: {day10results}, elapsed time: {watch.ElapsedTicks}");
+
+        watch.Reset();
+        watch.Start();
+        double day10resultsMemo = problemTen.CalculateMemo();
+        watch.Stop();
+        Console.WriteLine($"Day 10 - Problem 1: {day10resultsMemo}, elapsed time: {watch.ElapsedTicks}");
 
         // double day10results2 = problemTen.CalculateFinalChecksumTwo();
         // Console.WriteLine($"Day 10 - Problem 2: {day10results2}");
