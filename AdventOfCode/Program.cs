@@ -12,8 +12,9 @@ class MainTest
         //RunDaySixProblems();
         //RunDaySevenProblems();
         //RunDayEightProblems();
-        // RunDayNineProblems();
-        RunDayTenProblems();
+        //RunDayNineProblems();
+        //RunDayTenProblems();
+        RunDayElevenProblems();
     }
 
     private static void RunDayOneProblems()
@@ -137,5 +138,16 @@ class MainTest
 
         // double day10results2 = problemTen.CalculateFinalChecksumTwo();
         // Console.WriteLine($"Day 10 - Problem 2: {day10results2}");
+    }
+
+    private static void RunDayElevenProblems()
+    {
+        Day11Problems problemEleven = new("C:\\Source\\AdventOfCode\\AdventOfCode\\2024\\Day11Input.txt");
+
+        ulong day11results = problemEleven.CalculateMemo();
+        Console.WriteLine($"Day 11 - Problem 1: {day11results}");
+
+        // double day11results2 = problemEleven.Calculate();
+        // Console.WriteLine($"Day 11 - Problem 2: {day11results2}");
     }
 }

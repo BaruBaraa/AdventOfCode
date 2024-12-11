@@ -102,8 +102,7 @@ namespace AdventOfCode.AdventOfCode2024
             count += DFSHelper(row - 1, col, _graph, currHeight + 1, visited);
             count += DFSHelper(row, col - 1, _graph, currHeight + 1, visited);
 
-            memo[row][col] = count;
-            return count;
+            return memo[row][col] = count;
         }
     }
 }
