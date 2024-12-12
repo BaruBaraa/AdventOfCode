@@ -14,7 +14,8 @@ class MainTest
         //RunDayEightProblems();
         //RunDayNineProblems();
         //RunDayTenProblems();
-        RunDayElevenProblems();
+        //RunDayElevenProblems();
+        RunDayTwelveProblems();
     }
 
     private static void RunDayOneProblems()
@@ -149,5 +150,16 @@ class MainTest
 
         // double day11results2 = problemEleven.Calculate();
         // Console.WriteLine($"Day 11 - Problem 2: {day11results2}");
+    }
+
+    private static void RunDayTwelveProblems()
+    {
+        Day12Problems problemTwelve = new("C:\\Source\\AdventOfCode\\AdventOfCode\\2024\\Day12Input.txt");
+
+        // int day12results = problemTwelve.CalculateTotalFencingCost();
+        // Console.WriteLine($"Day 12 - Problem 1: {day12results}");
+
+        int day12results2 = problemTwelve.CalculateTotalFencingCostTwo();
+        Console.WriteLine($"Day 12 - Problem 2: {day12results2}");
     }
 }
