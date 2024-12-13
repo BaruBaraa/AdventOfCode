@@ -9,27 +9,6 @@ namespace AdventOfCode.AdventOfCode2024
         private string[] _input = [];
         private ulong[] _nums = [];
 
-        public class LinkedNode
-        {
-            public LinkedNode Left = null;
-            public LinkedNode Right = null;
-            public string Value = "";
-
-            public LinkedNode() {}
-
-            public LinkedNode(LinkedNode left, LinkedNode right, string value)
-            {
-                Left = left;
-                Right = right;
-                Value = value;
-            }
-        }
-        public class LinkedList
-        {
-            public LinkedNode Root = null;
-            public int Count = 0;
-        }
-
         public Day11Problems(string path)
         {
             ReadNumInputsFromFile(path);
@@ -87,6 +66,24 @@ namespace AdventOfCode.AdventOfCode2024
         }
 
         /* old solutions */
+                // public class LinkedNode
+        // {
+        //     public LinkedNode Left = null;
+        //     public LinkedNode Right = null;
+        //     public string Value = "";
+        //     public LinkedNode() {}
+        //     public LinkedNode(LinkedNode left, LinkedNode right, string value)
+        //     {
+        //         Left = left;
+        //         Right = right;
+        //         Value = value;
+        //     }
+        // }
+        // public class LinkedList
+        // {
+        //     public LinkedNode Root = null;
+        //     public int Count = 0;
+        // }
         // public int Calculate()
         // {
         //     LinkedList stones = new();
