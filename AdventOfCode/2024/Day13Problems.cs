@@ -75,7 +75,7 @@ namespace AdventOfCode.AdventOfCode2024
 
                 DFSHelper(currX, currY, 0, 0, s, memo);
 
-                Console.WriteLine(memo[0][0] != Int32.MaxValue ? memo[0][0] : "No Prize Win");
+                // Console.WriteLine(memo[0][0] != Int32.MaxValue ? memo[0][0] : "No Prize Win");
                 count += memo[0][0] != Int32.MaxValue ? memo[0][0] : 0;
             }
 
@@ -84,42 +84,28 @@ namespace AdventOfCode.AdventOfCode2024
 
         public void DFSHelper(int x, int y, int a, int b, ClawSettings s, int[][] memo)
         {
-            if(a > 100 && b > 100)
+            if(a > 100 || b > 100)
                 return;
 
             if(x == 0 && y == 0)
+            {
                 memo[x][y] = Math.Min(memo[x][y], a * 3 + b);
+                // Console.WriteLine($"Total: {a * 3 + b}, A Count: {a}, B Count: {b}");
+            }
 
             int nextAx = x - s.Ax, nextBx = x - s.Bx, nextAy = y - s.Ay, nextBy = y - s.By;
             int nextACost = (a + 1) * 3 + b, nextBCost = a * 3 + b + 1;
 
-            if(nextACost < memo[0][0])
+            if(nextACost < memo[0][0] && nextAx >= 0 && nextAy >= 0 && nextACost < memo[nextAx][y])
             {
-                if(nextAx >= 0 && nextACost < memo[nextAx][y])
-                {
-                    memo[nextAx][y] = nextACost;
-                    DFSHelper(nextAx, y, a + 1, b, s, memo);
-                }
-                
-                if(nextAy >= 0 && nextACost < memo[x][nextAy])
-                {
-                    memo[x][nextAy] = nextACost;
-                    DFSHelper(x, nextAy, a + 1, b, s, memo);
-                }
+                memo[nextAx][y] = nextACost;
+                DFSHelper(nextAx, nextAy, a + 1, b, s, memo);
             }
-            if(nextBCost < memo[0][0])
-            {
-                if(nextBx >= 0 && nextBCost < memo[nextBx][y])
-                {
-                    memo[nextBx][y] = nextBCost;
-                    DFSHelper(nextBx, y, a, b + 1, s, memo);
-                }
                 
-                if(nextBy >= 0 && nextBCost < memo[x][nextBy])
-                {
-                    memo[x][nextBy] = nextBCost;
-                    DFSHelper(x, nextBy, a, b + 1, s, memo);
-                }
+            if(nextBCost < memo[0][0] && nextBx >= 0 && nextBy >= 0 && nextBCost < memo[nextBx][y])
+            {
+                memo[nextBx][y] = nextBCost;
+                DFSHelper(nextBx, nextBy, a, b + 1, s, memo);
             }
         }
 
