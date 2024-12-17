@@ -96,102 +96,179 @@ namespace AdventOfCode.AdventOfCode2024
             int nextAx = x - s.Ax, nextBx = x - s.Bx, nextAy = y - s.Ay, nextBy = y - s.By;
             int nextACost = (a + 1) * 3 + b, nextBCost = a * 3 + b + 1;
 
-            if(nextACost < memo[0][0] && nextAx >= 0 && nextAy >= 0 && nextACost < memo[nextAx][y])
+            if(nextACost < memo[0][0] && nextAx >= 0 && nextAy >= 0 && nextACost < memo[nextAx][nextAy])
             {
-                memo[nextAx][y] = nextACost;
+                memo[nextAx][nextAy] = nextACost;
                 DFSHelper(nextAx, nextAy, a + 1, b, s, memo);
             }
                 
-            if(nextBCost < memo[0][0] && nextBx >= 0 && nextBy >= 0 && nextBCost < memo[nextBx][y])
+            if(nextBCost < memo[0][0] && nextBx >= 0 && nextBy >= 0 && nextBCost < memo[nextBx][nextBy])
             {
-                memo[nextBx][y] = nextBCost;
+                memo[nextBx][nextBy] = nextBCost;
                 DFSHelper(nextBx, nextBy, a, b + 1, s, memo);
             }
         }
 
-        public class QueueObject
+        //Sadly gave in and tracked down hints.
+        public Int64 CalculateMod()
         {
-            public int X;
-            public int Y;
-            public int A;
-            public int B;
-
-            public QueueObject(int x, int y, int a, int b)
-            {
-                X = x;
-                Y = y;
-                A = a;
-                B = b;
-            }
-        }
-
-        public int CalculateTwo()
-        {
-            int count = 0;
-            
+            Int64 count = 0;
             foreach(ClawSettings s in _allClawSettings)
             {
-                int currCount = Int32.MaxValue;
-                int currX = s.Px;
-                int currY = s.Py;
-
-                int[][] memo = new int[currX + 1][];
-                for(int i = 0; i < currX + 1; i++)
-                {
-                    memo[i] = new int[currY + 1];
-                    for(int j = 0; j < currY + 1; j++)
-                        memo[i][j] = Int32.MaxValue;
-                }
-
-                Queue<QueueObject> queue = new();
-                queue.Enqueue(new (currX, currY, 0, 0));
-
-                while(queue.Any())
-                {
-                    QueueObject curr = queue.Dequeue();
-
-                    if(curr.X == 0 && curr.Y == 0)
-                        currCount = Math.Min(currCount, curr.A * 3 + curr.B);
-                    else
-                    {
-                        int nextAx = curr.X - s.Ax, nextBx = curr.X - s.Bx, nextAy = curr.Y - s.Ay, nextBy = curr.Y - s.By;
-                        int nextACost = (curr.A + 1) * 3 + curr.B, nextBCost = curr.A * 3 + curr.B + 1;
-
-                        if(nextACost < currCount)
-                        {
-                            if(nextAx >= 0 && nextACost < memo[nextAx][curr.Y])
-                            {
-                                memo[nextAx][curr.Y] = nextACost;
-                                queue.Enqueue(new (nextAx, curr.Y, curr.A + 1, curr.B));
-                            }
-                            
-                            if(nextAy >= 0 && nextACost < memo[curr.X][nextAy])
-                            {
-                                memo[curr.X][nextAy] = nextACost;
-                                queue.Enqueue(new (curr.X, nextAy, curr.A + 1, curr.B));
-                            }
-                        }
-                        if(nextBCost < currCount)
-                        {
-                            if(nextBx >= 0 && nextBCost < memo[nextBx][curr.Y])
-                            {
-                                memo[nextBx][curr.Y] = nextBCost;
-                                queue.Enqueue(new (nextBx, curr.Y, curr.A, curr.B + 1));
-                            }
-                            
-                            if(nextBy >= 0 && nextBCost < memo[curr.X][nextBy])
-                            {
-                                memo[curr.X][nextBy] = nextBCost;
-                                queue.Enqueue(new (curr.X, nextBy, curr.A, curr.B + 1));
-                            }
-                        }
-                    }
-                }
-                Console.WriteLine(currCount);
-                count += currCount != Int32.MaxValue ? currCount : 0;
+                Int64 newPx = (Int64)s.Px + 10000000000000;
+                Int64 newPy = (Int64)s.Py + 10000000000000;
+                Int64 b = (newPy * (Int64)s.Ax - newPx * (Int64)s.Ay) / ((Int64)s.By * (Int64)s.Ax - (Int64)s.Bx * (Int64)s.Ay);
+                Int64 a = (newPx - b * (Int64)s.Bx) / (Int64)s.Ax;
+                if ((Int64)s.Ax * a + (Int64)s.Bx * b == newPx && (Int64)s.Ay * a + (Int64)s.By * b == newPy)
+                    count += a * 3 + b;
             }
 
             return count;
         }
+
+        // public ulong CalculateTwo()
+        // {
+        //     ulong count = 0;
+        //     foreach(ClawSettings s in _allClawSettings)
+        //     {
+        //         ulong currX = (ulong)s.Px + 10000;
+        //         ulong currY = (ulong)s.Py + 10000;
+
+        //         ulong[][] memo = new ulong[currX + 1][];
+        //         for(ulong i = 0; i < currX + 1; i++)
+        //         {
+        //             memo[i] = new ulong[currY + 1];
+        //             for(ulong j = 0; j < currY + 1; j++)
+        //                 memo[i][j] = ulong.MaxValue;
+        //         }
+
+        //         DFSHelperTwo(currX, currY, 0, 0, s, memo);
+
+        //         // Console.WriteLine(memo[0][0] != Int32.MaxValue ? memo[0][0] : "No Prize Win");
+        //         count += memo[0][0] != ulong.MaxValue ? memo[0][0] : 0;
+        //     }
+
+        //     return count;
+        // }
+
+        // public void DFSHelperTwo(ulong x, ulong y, ulong a, ulong b, ClawSettings s, ulong[][] memo)
+        // {
+        //     // if(a > 100 || b > 100)
+        //     //     return;
+
+        //     if(x == 0 && y == 0)
+        //     {
+        //         memo[x][y] = Math.Min(memo[x][y], a * 3 + b);
+        //         // Console.WriteLine($"Total: {a * 3 + b}, A Count: {a}, B Count: {b}");
+        //     }
+
+        //     ulong nextACost = (a + 1) * 3 + b, nextBCost = a * 3 + b + 1;
+
+        //     if((ulong)s.Ax <= x && (ulong)s.Ay <= y)
+        //     {
+        //         ulong nextAx = x - (ulong)s.Ax, nextAy = y - (ulong)s.Ay;
+
+        //         if(nextACost < memo[0][0] && nextACost < memo[nextAx][nextAy])
+        //         {
+        //             memo[nextAx][nextAy] = nextACost;
+        //             DFSHelperTwo(nextAx, nextAy, a + 1, b, s, memo);
+        //         }
+        //     }
+        //     if((ulong)s.Bx <= x && (ulong)s.By <= y)
+        //     {
+        //         ulong nextBx = x - (ulong)s.Bx, nextBy = y - (ulong)s.By;
+
+        //         if(nextBCost < memo[0][0] && nextBCost < memo[nextBx][y])
+        //         {
+        //             memo[nextBx][nextBy] = nextBCost;
+        //             DFSHelperTwo(nextBx, nextBy, a, b + 1, s, memo);
+        //         }
+        //     }
+        // }
+
+        // public class QueueObject
+        // {
+        //     public int X;
+        //     public int Y;
+        //     public int A;
+        //     public int B;
+
+        //     public QueueObject(int x, int y, int a, int b)
+        //     {
+        //         X = x;
+        //         Y = y;
+        //         A = a;
+        //         B = b;
+        //     }
+        // }
+
+        // public int CalculateTwo()
+        // {
+        //     int count = 0;
+            
+        //     foreach(ClawSettings s in _allClawSettings)
+        //     {
+        //         int currCount = Int32.MaxValue;
+        //         int currX = s.Px;
+        //         int currY = s.Py;
+
+        //         int[][] memo = new int[currX + 1][];
+        //         for(int i = 0; i < currX + 1; i++)
+        //         {
+        //             memo[i] = new int[currY + 1];
+        //             for(int j = 0; j < currY + 1; j++)
+        //                 memo[i][j] = Int32.MaxValue;
+        //         }
+
+        //         Queue<QueueObject> queue = new();
+        //         queue.Enqueue(new (currX, currY, 0, 0));
+
+        //         while(queue.Any())
+        //         {
+        //             QueueObject curr = queue.Dequeue();
+
+        //             if(curr.X == 0 && curr.Y == 0)
+        //                 currCount = Math.Min(currCount, curr.A * 3 + curr.B);
+        //             else
+        //             {
+        //                 int nextAx = curr.X - s.Ax, nextBx = curr.X - s.Bx, nextAy = curr.Y - s.Ay, nextBy = curr.Y - s.By;
+        //                 int nextACost = (curr.A + 1) * 3 + curr.B, nextBCost = curr.A * 3 + curr.B + 1;
+
+        //                 if(nextACost < currCount)
+        //                 {
+        //                     if(nextAx >= 0 && nextACost < memo[nextAx][curr.Y])
+        //                     {
+        //                         memo[nextAx][curr.Y] = nextACost;
+        //                         queue.Enqueue(new (nextAx, curr.Y, curr.A + 1, curr.B));
+        //                     }
+                            
+        //                     if(nextAy >= 0 && nextACost < memo[curr.X][nextAy])
+        //                     {
+        //                         memo[curr.X][nextAy] = nextACost;
+        //                         queue.Enqueue(new (curr.X, nextAy, curr.A + 1, curr.B));
+        //                     }
+        //                 }
+        //                 if(nextBCost < currCount)
+        //                 {
+        //                     if(nextBx >= 0 && nextBCost < memo[nextBx][curr.Y])
+        //                     {
+        //                         memo[nextBx][curr.Y] = nextBCost;
+        //                         queue.Enqueue(new (nextBx, curr.Y, curr.A, curr.B + 1));
+        //                     }
+                            
+        //                     if(nextBy >= 0 && nextBCost < memo[curr.X][nextBy])
+        //                     {
+        //                         memo[curr.X][nextBy] = nextBCost;
+        //                         queue.Enqueue(new (curr.X, nextBy, curr.A, curr.B + 1));
+        //                     }
+        //                 }
+        //             }
+        //         }
+        //         Console.WriteLine(currCount);
+        //         count += currCount != Int32.MaxValue ? currCount : 0;
+        //     }
+
+        //     return count;
+        // }
     }
 }
