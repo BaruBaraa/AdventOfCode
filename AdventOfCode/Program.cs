@@ -19,10 +19,10 @@ class MainTest
         // RunDayThirteenProblems();
         // RunDayFourteenProblems();
         // RunDayFifteenProblems();
-        RunDay16Problems();
+        // RunDay16Problems();
         // RunDay17Problems();
         // RunDay18Problems();
-        // RunDay19Problems();
+        RunDay19Problems();
         // RunDay20Problems();
         // RunDay21Problems();
         // RunDay22Problems();
@@ -227,29 +227,29 @@ class MainTest
     {
         Day17Problems problem = new("C:\\Source\\AdventOfCode\\AdventOfCode\\2024\\Day17Input.txt");
         
-        int dayresults = problem.Calculate();
-        Console.WriteLine($"Problem 1: {dayresults}");
+        // string dayresults = problem.Calculate();
+        // Console.WriteLine($"Problem 1: {dayresults}");
 
-        // int dayresults2 = problem.Calculate();
-        // Console.WriteLine($"Problem 2: {dayresults2}");
+        long dayresults2 = problem.CalculateTwo();
+        Console.WriteLine($"Problem 2: {dayresults2}");
     }
 
     private static void RunDay18Problems()
     {
         Day18Problems problem = new("C:\\Source\\AdventOfCode\\AdventOfCode\\2024\\Day18Input.txt");
         
-        int dayresults = problem.Calculate();
-        Console.WriteLine($"Problem 1: {dayresults}");
+        // int dayresults = problem.Calculate();
+        // Console.WriteLine($"Problem 1: {dayresults}");
 
-        // int dayresults2 = problem.Calculate();
-        // Console.WriteLine($"Problem 2: {dayresults2}");
+        (int x, int y) dayresults2 = problem.CalculateTwo();
+        Console.WriteLine($"Problem 2: ({dayresults2.x},{dayresults2.y})");
     }
 
     private static void RunDay19Problems()
     {
         Day19Problems problem = new("C:\\Source\\AdventOfCode\\AdventOfCode\\2024\\Day19Input.txt");
         
-        int dayresults = problem.Calculate();
+        long dayresults = problem.Calculate();
         Console.WriteLine($"Problem 1: {dayresults}");
 
         // int dayresults2 = problem.Calculate();
